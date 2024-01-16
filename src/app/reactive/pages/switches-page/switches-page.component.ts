@@ -14,10 +14,16 @@ export class SwitchesPageComponent implements OnInit{
     termsAndConditions: [false, Validators.requiredTrue],
   });
 
+public person = {
+  gender: "F",
+  wantNotifications: false,
+}
+
+
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
-
+    this.myForm.reset(this.person)
   }
 
   checkTerms():boolean{
@@ -32,8 +38,13 @@ export class SwitchesPageComponent implements OnInit{
       this.myForm.markAllAsTouched();
       return;
     }
-    console.log(this.myForm.value);
 
+
+
+    const {termsAndConditions, ...newPerson} = this.myForm.value;
+    this.person = newPerson;
+    console.log(this.myForm.value);
+    console.log(this.person);
   }
 
 }

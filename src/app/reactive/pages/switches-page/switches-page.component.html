@@ -2,7 +2,7 @@
 <hr>
 
 
-<form autocomplete="off" [formGroup]="myForm">
+<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSave()">
 
     <!-- Radio -->
     <div class="row mb-3">
@@ -14,7 +14,6 @@
                        type="radio"
                        value="M"
                        id="radioMasculino"
-                       name="gender"
                        formControlName="gender">
                 <label class="form-check-label" for="radioMasculino">
                   Masculino
@@ -25,7 +24,6 @@
                 <input class="form-check-input"
                        type="radio"
                        value="F"
-                       name="gender"
                        id="radioFemenino"
                        formControlName="gender">
                 <label class="form-check-label" for="radioFemenino">
@@ -66,6 +64,7 @@
                 </label>
               </div>
               <span *ngIf="!myForm.controls['termsAndConditions'].value && myForm.touched" class="form-text text-danger">
+              <!-- <span *ngIf="isValidField('termsAndConditions')" class="form-text text-danger"> -->
                  Debe de aceptar las condiciones de uso
               </span>
 
@@ -78,7 +77,7 @@
         <div class="col">
             <button class="btn btn-primary float-end"
                     type="submit"
-                    (click)="onSave()">
+                    >
                 Guardar
             </button>
         </div>
@@ -92,7 +91,7 @@
 <br>
 
 <h5>Persona</h5>
-<pre>{{ 'object' | json }}</pre>
+<pre>{{ person | json }}</pre>
 <br>
 
 <h5>Valid</h5>
